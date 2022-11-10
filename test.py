@@ -1,26 +1,39 @@
+VOWELS = set("aeiou")
+
+
+def vowel_count(phrase):
+    """Return frequency map of vowels, case-insensitive.
+
+        >>> vowel_count('rithm school')
+        {'i': 1, 'o': 2}
+
+        >>> vowel_count('HOW ARE YOU? i am great!')
+        {'o': 2, 'a': 3, 'e': 2, 'u': 1, 'i': 1}
+    """
+
+    lst = list(phrase)
+    for char in lst:
+        if char.upper() in VOWELS == True:
+            res_dict = {[char]: 0}
+
+
 # letters = list('apple')
 # print(letters)
-
 # membership operators: use in to check for membership
 # nums = list(range(0, 10, 2))
 # # if 2 in nums: print('yeah 2')
 # # for num in [4, 5, 6]:
 # #   if num not in nums:
 # #     print(f'oh {num} is not in the nums list')
-
 # last = nums[-1]
 # print(f'the last num of the list is {last}')
-
-
 # in js, template literal is ${}
 # in python, {}
 # price = 3.5
 # qty = 7
 # print(f"your total is {price * qty}")
-
 # to string
 # print(str([3, 4, 5]))
-
 # dictionary
 # dic = {'name': 'butter', 'age': 6, 'breed': 'Silkie'}
 # stuff = {True: 34, 100: 'awesome'}
@@ -30,7 +43,6 @@
 # # use [] to access value
 # print(stuff[True])
 # print(dict([[True, 0], [False, 1]]))
-
 # looping in dictionary
 chicken = {
     'name': 'Lady Gray',
@@ -166,3 +178,61 @@ test_dictCompre = {item: 'student' for item in names}
 # set: filter for vowels/consonants
 test_setCompre = {char for char in 'apple' if char in 'aeiou'}
 test_setCompre_2 = {char for char in 'apple' if char not in 'aeiou'}
+
+
+# packing/unpacking applies to list/tuple
+colors = ['red', 'blue']
+color1, color2 = colors
+# print(color1) 'red'
+# print(color2) 'blue'
+# gather rest using * before variable
+letters = ['a', 'b', 'c']
+first, *left = letters
+grades = {'A': 12, 'B': 14, 'C': 33}
+
+
+def return_grades(grades):
+    for (k, v) in grades.items():
+        return (k, v)
+
+
+# spreading
+fruits = {'apple', 'pear'}
+groceries = ['kale', 'celery', *fruits]
+# [*'hello'] = ['h', 'e', 'l', 'l', 'o']
+# {*'hello'} = {'e', 'h', 'l', 'o'} because python would recognize {} as a set
+# if you need to use spreading for dict, use **
+rainfall = {'Jan': 2.5, 'Feb': 4.0}
+wholeYear = {'Dec': 9.2, **rainfall}
+
+# handling error
+
+
+def get_days_alive(person):
+    try:
+        days = person['age'] * 365
+        return f'{person["name"]} has lived for {days} days'
+    except KeyError as missingKey:
+        return f'Missing key:{missingKey}'
+    except TypeError as type:
+        return f'{type}. Expected input to be a dict'
+
+
+# raise errors
+def bounded_avg(nums):
+    """return avg of nums (raise error if input are not in range (1,100)"""
+    for n in nums:
+        if n < 1 or n > 100:
+            raise ValueError('outsides bound 1-100')
+    return int(sum(nums) / len(nums))
+
+
+def handle_data():
+    """pricess data"""
+    # ages = get_ages(from_my_db)
+    ages = [10, 30, 50]
+    try:
+        avg = bounded_avg(ages)
+        return f'Average was {avg}'
+    except ValueError as exc:
+        return 'invalid age'

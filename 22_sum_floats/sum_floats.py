@@ -1,9 +1,9 @@
 def sum_floats(nums):
     """Return sum of floating point numbers in nums.
-    
+
         >>> sum_floats([1.5, 2.4, 'awesome', [], 1])
         3.9
-        
+
         >>> sum_floats([1, 2, 3])
         0
     """
@@ -11,3 +11,6 @@ def sum_floats(nums):
     # hint: to find out if something is a float, you should use the
     # "isinstance" function --- research how to use this to find out
     # if something is a float!
+    import functools
+    lst = [item for item in nums if isinstance(item, float) == True]
+    return 0 if len(lst) == 0 else functools.reduce(lambda a, b: a+b, lst)
